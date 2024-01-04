@@ -1,0 +1,24 @@
+﻿@inject NavigationManager NavigationManager
+
+@if (role == "Admin123")
+{
+    @ChildContent
+
+}
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public string role = "Admin";
+
+    protected override async Task OnInitializedAsync()
+    {
+        int i = 0;
+        if(i == 9)
+        {
+            NavigationManager.NavigateTo("/counter");
+        }
+        
+    }
+}
