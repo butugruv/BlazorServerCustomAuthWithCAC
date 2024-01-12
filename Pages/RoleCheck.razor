@@ -1,24 +1,44 @@
 ﻿@inject NavigationManager NavigationManager
 
-@if (role == "Admin123")
+@if (currentRole == RequiredRole)
 {
     @ChildContent
 
+}
+else
+{
+    <div class="container text-center mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">Access Denied!</h4>
+                    <p>You do not have permission to view this page.</p>
+                    <hr>
+                    <p class="mb-0">Please contact the administrator if you believe this is an error.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    public string role = "Admin";
+    [Parameter]
+    public string RequiredRole { get; set; }
+
+    string currentRole = "Admin";
 
     protected override async Task OnInitializedAsync()
     {
+        /*
         int i = 0;
         if(i == 9)
         {
             NavigationManager.NavigateTo("/counter");
         }
+        */
         
     }
 }
